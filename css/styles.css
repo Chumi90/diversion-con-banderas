@@ -8,3 +8,21 @@ body {
 h1 {
   color: #333;
 }
+
+#countries-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+img{
+  height: 110px;
+  width: 100%;
+}
+article{
+  border: 1px solid black;
+  padding: 5px;
+}
+
