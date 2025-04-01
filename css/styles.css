@@ -40,3 +40,7 @@ article{
   top: 40%;
   background-color: rgb(221, 218, 63);
 }
+
+ul{
+  list-style: none;
+}

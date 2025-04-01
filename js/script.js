@@ -54,7 +54,7 @@ function drawOrderFlags(flagDraw,data){
 
 //Draw the flag that the user select
 function drawFlagSeletc(data,flagName,flagInclu){
-    //console.log(data)
+    console.log(data)
     //console.log(flagName)
     let flagFloat=0
     data.forEach((element)=>{
@@ -64,12 +64,17 @@ function drawFlagSeletc(data,flagName,flagInclu){
                 <article class="FlagFloat" id="flag${element.name.common}">
                 <img src="../img/closeImg.png" id="closeCross" class="floatFlag" alt="flag${element.name.common}">
                 <img src="${element.flags[1]}" id="flag${element.name.common}" class="flag" alt="flag${element.name.common}">
-                <p id="flag${element.name.common}"><strong>${element.name.common}</strong></p>
+                <ul>
+                    <li id="flag${element.name.common}"><strong>${element.name.common}</strong></li>
+                    <li id="capital">Capital: ${element.capital}</li>
+                    <li id="poblacion">Población: ${element.population}</li>
+                    <li id="carretera">Lado de la carretera: ${element.car.side}</li>
+                </ul>
                 </article>
                 `
         }
     });
-    //console.log(flagInclu)
+    //console.log(element.population)
     //console.log([flagFloat,flagInclu].join(""))
     flagsDraw.innerHTML=([flagFloat,flagInclu].join(""))
     closeFlag(flagInclu);
