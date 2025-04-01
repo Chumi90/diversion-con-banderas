@@ -44,7 +44,8 @@ quieres añadir')` y para eliminar `elemento.classList.remove('clase que quieres
 
 const URL="https://restcountries.com/v3/all"
 const flagsDraw=document.getElementById("countries-list");
-
+let flags=[]
+let citesOrder=[]
 //Draw the flags in de HTML
 function drawOrderFlags(flagDraw,data){
     flagsDraw.innerHTML=flagDraw;
@@ -77,7 +78,9 @@ function drawFlagSeletc(data,flagName,flagInclu){
 function closeFlag(flagInclu){
     const closeFlag=document.getElementById('closeCross');
     closeFlag.addEventListener('click',e=>{
-    getDatas()
+    console.log(citesOrder)
+    console.log(flags)
+    getFlags(citesOrder,flags) //Pasamos el dato sin la necesidad de volver a llamar a los datos
     })
 }
 
@@ -123,11 +126,11 @@ const getDatas= async()=>{
         if(!response.ok){
             throw new Error ('Hay un error en la descarga',response.status);
         }
-    const flags=await response.json();
+    flags=await response.json();
     //console.log(flags);
     const cities=flags.map((city)=>city.name.common) //obtenemos el nombre de los paises
     //console.log(cities);
-    let citesOrder=cities.sort() //Order with the name of citys
+    citesOrder=cities.sort() //Order with the name of citys
     //console.log(citesOrder)
     getFlags(citesOrder,flags)
     }
