@@ -48,22 +48,47 @@ const flagsDraw=document.getElementById("countries-list");
 //Draw the flags in de HTML
 function drawOrderFlags(flagDraw,data){
     flagsDraw.innerHTML=flagDraw;
-    loop(data)
+    loop(data,flagDraw) //Introducimos la variable aquí para que primero se ejecute todo el Script y el usuario pueda selecciónar la bandera
 }
 
-function drawFlagSeletc(data,flagName){
-    console.log(data)
+function drawFlagSeletc(data,flagName,flagInclu){
+    //console.log(data)
+    //console.log(flagName)
+    let flagFloat=0
+    data.forEach((element)=>{
+        if(element.name.common==flagName){
+            //console.log(element.name.common)
+            flagFloat=`
+                <article class="FlagFloat" id="flag${element.name.common}">
+                <img src="../img/closeImg.png" id="closeCross" class="floatFlag" alt="flag${element.name.common}">
+                <img src="${element.flags[1]}" id="flag${element.name.common}" class="flag" alt="flag${element.name.common}">
+                <p id="flag${element.name.common}"><strong>${element.name.common}</strong></p>
+                </article>
+                `
+        }
+    });
+    //console.log(flagInclu)
+    //console.log([flagFloat,flagInclu].join(""))
+    flagsDraw.innerHTML=([flagFloat,flagInclu].join(""))
+    closeFlag(flagInclu);
     console.log(flagName)
 }
 
-function loop(data){
+function closeFlag(flagInclu){
+    const closeFlag=document.getElementById('closeCross');
+    closeFlag.addEventListener('click',e=>{
+    getDatas()
+    })
+}
+
+function loop(data,flagDraw){
     const btns=document.querySelectorAll('article[id^="flag"]') //Seleccionamos la bandera que necesitamos
     const flag=btns.forEach((btn) => {
         btn.addEventListener('click', e => {
         const flag =(e.target.id)//Convertir la cadena a un array .split(' ')
         const flagName=(flag.split("flag"))[1] //Sacampos el nombre de la bandela
         //console.log(flagName)
-        drawFlagSeletc(data,flagName)
+        drawFlagSeletc(data,flagName,flagDraw)
         });
     });
 }
@@ -80,7 +105,7 @@ function getFlags(city,data){
             if (flag==flags.name.common){
                 datas+=`
                 <article class="Flag" id="flag${flags.name.common}">
-                <img src="${flags.flags[1]}" id="flag${flags.name.common}" alt="flag${flags.name.common}">
+                <img src="${flags.flags[1]}" id="flag${flags.name.common}" class="flag" alt="flag${flags.name.common}">
                 <p id="flag${flags.name.common}"><strong>${flags.name.common}</strong></p>
                 </article>                
                 `

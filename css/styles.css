@@ -17,7 +17,7 @@ h1 {
   gap: 10px;
 }
 
-img{
+.flag{
   height: 110px;
   width: 100%;
 }
@@ -26,3 +26,14 @@ article{
   padding: 5px;
 }
 
+.floatFlag{
+  width: 15px;
+  height: 15px;
+}
+
+.FlagFloat{
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  background-color: grey;
+}
