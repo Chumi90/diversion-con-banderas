@@ -18,7 +18,7 @@ h1 {
 }
 
 .flag{
-  height: 110px;
+  height: 150px;
   width: 100%;
 }
 article{
@@ -35,7 +35,8 @@ article{
 
 .FlagFloat{
   position: absolute;
+  position:sticky;/*Hace que la bandera quede fijada en el centro de la pantalla un haciendo scroll, para mejorarlo lo se puede crear un position*/
   left: 40%;
   top: 40%;
-  background-color: grey;
+  background-color: rgb(221, 218, 63);
 }

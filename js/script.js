@@ -52,6 +52,7 @@ function drawOrderFlags(flagDraw,data){
     loop(data,flagDraw) //Introducimos la variable aquí para que primero se ejecute todo el Script y el usuario pueda selecciónar la bandera
 }
 
+//Draw the flag that the user select
 function drawFlagSeletc(data,flagName,flagInclu){
     //console.log(data)
     //console.log(flagName)
@@ -72,26 +73,28 @@ function drawFlagSeletc(data,flagName,flagInclu){
     //console.log([flagFloat,flagInclu].join(""))
     flagsDraw.innerHTML=([flagFloat,flagInclu].join(""))
     closeFlag(flagInclu);
-    console.log(flagName)
+    //console.log(flagName)
 }
 
+//Borrado de la bandera cuando no la necesitamos
 function closeFlag(flagInclu){
     const closeFlag=document.getElementById('closeCross');
     closeFlag.addEventListener('click',e=>{
-    console.log(citesOrder)
-    console.log(flags)
+    //console.log(citesOrder)
+    //console.log(flags)
     getFlags(citesOrder,flags) //Pasamos el dato sin la necesidad de volver a llamar a los datos
     })
 }
 
+//Busqueda de la bandera que necesitamos obtener capturamos su Id para poder buscarla y sacarla por pantalla
 function loop(data,flagDraw){
-    const btns=document.querySelectorAll('article[id^="flag"]') //Seleccionamos la bandera que necesitamos
-    const flag=btns.forEach((btn) => {
-        btn.addEventListener('click', e => {
-        const flag =(e.target.id)//Convertir la cadena a un array .split(' ')
-        const flagName=(flag.split("flag"))[1] //Sacampos el nombre de la bandela
+    const btns=document.querySelectorAll('article[id^="flag"]') //Obtiene el Id de todas las banderas
+    const flag=btns.forEach((btn) => { //hacemos un bucle para ver todos los ID de la banderas
+        btn.addEventListener('click', e => { //Cuando hace click se queda con el dato de la bandera seleccionada
+        const flag =(e.target.id)//Obtenemos el Id de la bandera seleccionada
+        const flagName=(flag.split("flag"))[1] //Quitamos del campo del ID el campo recursivo de las banderas
         //console.log(flagName)
-        drawFlagSeletc(data,flagName,flagDraw)
+        drawFlagSeletc(data,flagName,flagDraw) //Cuando borramos ofrecemos el dato para que se pinten de nuevo las banderas sin necesidad de iniciar el programa
         });
     });
 }
@@ -116,7 +119,7 @@ function getFlags(city,data){
         })
     })
     //console.log(datas);
-    drawOrderFlags(datas,data);
+    drawOrderFlags(datas,data); //Pasamos los datos a la función para que pinte las banderas
 }
 
 //Gets the flags with fetch
@@ -132,12 +135,13 @@ const getDatas= async()=>{
     //console.log(cities);
     citesOrder=cities.sort() //Order with the name of citys
     //console.log(citesOrder)
-    getFlags(citesOrder,flags)
+    getFlags(citesOrder,flags) //Llamamos a la función para que busque las banderas
     }
     catch(error){
         console.log('Error al obtener los datos',error);
     }
 }
 
+//Llamamos a la función para que inicialice
 getDatas()
 
